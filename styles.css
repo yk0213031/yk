@@ -1,0 +1,94 @@
+body {
+
+font-family: Arial, sans-serif;
+
+    background-color: #f4f4f9;
+
+    background-image: url('background.jpg'); /* 加入背景圖片 */
+
+    background-size: cover; /* 讓背景圖片覆蓋整個畫面 */
+
+    background-position: center; /* 讓背景圖片居中 */
+
+    color: #333;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 100vh;
+
+    margin: 0;
+
+}
+
+#game-container {
+
+    background-color: rgba(255, 255, 255, 0.8); /* 讓遊戲容器背景半透明 */
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    width: 300px;
+
+    text-align: center;
+
+}
+
+#question-container {
+
+    margin-bottom: 20px;
+
+}
+
+#options-list {
+
+    list-style: none;
+
+    padding: 0;
+
+}
+
+#options-list li {
+
+    margin: 10px 0;
+
+}
+
+.option-btn {
+
+    width: 100%;
+
+    padding: 10px;
+
+    background-color: #007bff;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+.option-btn:hover {
+
+    background-color: #0056b3;
+
+}
+
+#result-container {
+
+    margin-top: 20px;
+
+    font-weight: bold;
+
+}
+ 
