@@ -10,8 +10,8 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "誰是第一位登上月球的人？",
-        options: ["尼爾·阿姆斯壯", "巴茲·奧爾德林", "尤里·加加林", "麥可·柯林斯"],
+        question: "Which item will donate to Caritas？",
+        options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
     },
     // 新增問題
