@@ -12,9 +12,9 @@ const questions = [
 
     {
 
-        question: "哪一種語言是網頁開發中最常用的？",
+        question: "Which item will donate to Cross Road？",
 
-        options: ["Python", "JavaScript", "C++", "Java"],
+        options: ["Clothes", "Phones", "Computers", "Cash"],
 
         correctAnswer: 1
 
