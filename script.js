@@ -16,14 +16,14 @@ const questions = [
     },
     // 新增問題
     {
-        question: "What is the capital city of Japan?",
-        options: ["Tokyo", "Kyoto", "Osaka", "Hokkaido"],
-        correctAnswer: 0
+        question: "How many Airpod did we find?",
+        options: ["about 100", "about 200", "about 300", "about 400"],
+        correctAnswer: 2
     },
     {
-        question: "哪個動物被稱為“森林之王”？",
-        options: ["老虎", "獅子", "大象", "豹子"],
-        correctAnswer: 1
+        question: "How lost and found team help with group sustainability”？",
+        options: ["Donate the found items", "Repaired the damaged bag", "Promoting resuse and recycle", "All of the above"],
+        correctAnswer: 3
     },
     {
         question: "The Eiffel Tower is located in which city?",
