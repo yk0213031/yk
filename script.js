@@ -5,19 +5,19 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "Which item will donate to Cross Road？",
+        question: "Which type of item will donate to Cross Road？",
         options: ["Clothes", "Phones", "Computers", "Cash"],
         correctAnswer: 0
     },
     {
-        question: "Which item will donate to Caritas？",
+        question: "Which type of item will donate to Caritas？",
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
     },
     // 新增問題
     {
         question: "How many Airpods are there in the box?",
-        options: ["about 100", "about 200", "about 300", "about 400"],
+        options: ["about 200", "about 300", "about 400", "about 500"],
         correctAnswer: 2
     },
     {
