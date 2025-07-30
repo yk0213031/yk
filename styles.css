@@ -84,11 +84,8 @@ font-family: Arial, sans-serif;
 
 }
 
-#result-container {
-
-    margin-top: 20px;
-
-    font-weight: bold;
-
+#result-text {
+  font-size: 24px; /* 調整這裡的數值來放大字體 */
+  font-weight: bold; /* 可以加粗 */
 }
  
