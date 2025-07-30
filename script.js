@@ -26,9 +26,9 @@ const questions = [
         correctAnswer: 3
     },
     {
-        question: "How many weight of clothes did we donate to Crossroad in our last donation?",
-        options: ["about 200kg ", "about 300kg", "about 400kg", "about 500kg"],
-        correctAnswer: 1
+        question: "How many boxes of clothing did we donate to Crossroad in our last donation?",
+        options: ["about 10boxes ", "about 20boxes", "about 30boxes", "about 40boxes"],
+        correctAnswer: 2
     },
     {
         question: "哪個國家以薯條和巧克力聞名？",
