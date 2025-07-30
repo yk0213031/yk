@@ -1,13 +1,13 @@
 const questions = [
     {
-        question: "How many lost and found items did we collect？",
-        options: ["1000", "1500", "2000", "3000"],
+        question: "How many lost and found items did we collect this year？",
+        options: ["about 1000", "about 1500", "about 2000", "about 3000"],
         correctAnswer: 2
     },
     {
         question: "Which item will donate to Cross Road？",
         options: ["Clothes", "Phones", "Computers", "Cash"],
-        correctAnswer: 1
+        correctAnswer: 0
     },
     {
         question: "Which item will donate to Caritas？",
@@ -16,7 +16,7 @@ const questions = [
     },
     // 新增問題
     {
-        question: "How many Airpod did we find?",
+        question: "How many Airpods are there in the box?",
         options: ["about 100", "about 200", "about 300", "about 400"],
         correctAnswer: 2
     },
