@@ -91,10 +91,22 @@ function checkAnswer(selectedIndex) {
 
 // 遊戲結束
 function endGame() {
-    questionText.textContent = "遊戲結束！";
-    optionsList.innerHTML = "";
-    resultText.textContent = `你答對了 ${score} 題，共 ${questions.length} 題。`;
-}
+  const correctRatio = score / questions.length;
+  let prize = "";
 
+  if (correctRatio === 1) {
+    prize = "冠軍獎！恭喜你！";
+  } else if (correctRatio >= 0.7) {
+    prize = "中獎！你可以獲得中獎品！";
+  } else if (correctRatio > 0.5) {
+    prize = "小獎！你可以獲得小獎品！";
+  } else {
+    prize = "沒獎！下次再來挑戰吧！";
+  }
+
+  questionText.textContent = "遊戲結束！";
+  optionsList.innerHTML = "";
+  resultText.textContent = `你答對了 ${score} 題，共 ${questions.length} 題。獎品：${prize}`;
+}
 // 初始化遊戲
 displayQuestion();
