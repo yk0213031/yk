@@ -10,7 +10,7 @@ const questions = [
         correctAnswer: 0
     },
     {
-        question: "Which type of item will donate to Caritas？",
+        question: "Which type of item will donate to Caritas Computer Workshop？",
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
     },
@@ -31,9 +31,9 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "哪個國家以薯條和巧克力聞名？",
-        options: ["比利時", "法國", "瑞士", "荷蘭"],
-        correctAnswer: 0
+        question: "What is the contact number of Lost and Found team？",
+        options: ["27477777", "27477828", "27477838", "27472747"],
+        correctAnswer: 2
     }
 ];
 
