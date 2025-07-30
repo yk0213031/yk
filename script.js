@@ -14,7 +14,6 @@ const questions = [
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
     },
-    // 新增問題
     {
         question: "How many Airpods are there in the box?",
         options: ["about 200", "about 300", "about 400", "about 500"],
