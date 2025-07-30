@@ -95,18 +95,24 @@ function endGame() {
   let prize = "";
 
   if (correctRatio === 1) {
-    prize = "冠軍獎！恭喜你！";
+    prize = "Champion Prize! Congratulations!";
   } else if (correctRatio >= 0.7) {
-    prize = "中獎！你可以獲得中獎品！";
+    prize = "Medium Prize! Well done!";
   } else if (correctRatio > 0.5) {
-    prize = "小獎！你可以獲得小獎品！";
+    prize = "Small Prize! Good try!";
   } else {
-    prize = "沒獎！下次再來挑戰吧！";
+    prize = "No prize! Try again next time!";
   }
 
-  questionText.textContent = "遊戲結束！";
-  optionsList.innerHTML = "";
-  resultText.textContent = `你答對了 ${score} 題，共 ${questions.length} 題。獎品：${prize}`;
+  // Update question and show final result
+  document.getElementById("question-text").textContent = "Game Over!";
+  document.getElementById("options-list").innerHTML = "";
+
+  // Show result with enlarged font
+  const resultElement = document.getElementById("result-text");
+  resultElement.textContent = `You answered ${score} out of ${questions.length} questions correctly. Prize: ${prize}`;
+  resultElement.style.fontSize = "24px"; // enlarge font
+  resultElement.style.fontWeight = "bold"; // bold text
 }
 // 初始化遊戲
 displayQuestion();
