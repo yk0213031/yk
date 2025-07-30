@@ -26,8 +26,8 @@ const questions = [
         correctAnswer: 3
     },
     {
-        question: "The Eiffel Tower is located in which city?",
-        options: ["London", "Paris", "Berlin", "Rome"],
+        question: "How many weight of clothes did we donate to Crossroad in our last donation?",
+        options: ["about 200kg ", "about 300kg", "about 400kg", "about 500kg"],
         correctAnswer: 1
     },
     {
