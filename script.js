@@ -38,7 +38,7 @@ const originalQuestions = [
 
 const additionalQuestions = [
     {
-        question: "Which charity organization will we be partnering with for the charity sale? ?",
+        question: "Which charity organization will we be partnering with for the charity sale?",
         options: ["Redcross", "HK Children & Youth Services", "UNICEF", "WWF"],
         correctAnswer: 1
     },
