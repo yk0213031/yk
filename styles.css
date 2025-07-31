@@ -1,4 +1,3 @@
-/* Core Styles */
 body {
     font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
     background-color: #f4f4f9;
@@ -25,7 +24,6 @@ body::before {
     z-index: -1;
 }
 
-/* Game Container */
 #game-container {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
@@ -38,7 +36,6 @@ body::before {
     margin: 20px;
 }
 
-/* Header Section */
 header {
     border-bottom: 2px solid #4CAF50;
     margin-bottom: 1.5rem;
@@ -52,7 +49,6 @@ h1 {
     margin: 0 0 0.5rem 0;
 }
 
-/* Progress Indicator */
 #progress {
     color: #666;
     font-weight: bold;
@@ -60,7 +56,6 @@ h1 {
     margin: 0.5rem 0;
 }
 
-/* Question Section */
 #question-container {
     min-height: 220px;
 }
@@ -74,7 +69,6 @@ h1 {
     padding: 0 1rem;
 }
 
-/* Options List */
 #options-list {
     list-style: none;
     padding: 0;
@@ -104,7 +98,6 @@ h1 {
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* Result Section */
 #result-text {
     font-size: 1.4rem;
     font-weight: bold;
@@ -114,7 +107,6 @@ h1 {
     padding: 0 1rem;
 }
 
-/* Footer */
 footer {
     margin-top: 2rem;
     padding-top: 1rem;
@@ -128,7 +120,6 @@ footer {
     margin: 0.5rem 0;
 }
 
-/* Animations */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -153,7 +144,6 @@ footer {
     animation: shake 0.5s ease-in-out;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
     #game-container {
         padding: 1.5rem;
@@ -167,7 +157,6 @@ footer {
 
     .question-text {
         font-size: 1.1rem;
-        min-height: auto;
     }
 
     .option-btn {
@@ -177,15 +166,5 @@ footer {
 
     #result-text {
         font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 400px) {
-    #game-container {
-        padding: 1rem;
-    }
-    
-    h1 {
-        font-size: 1.3rem;
     }
 }
