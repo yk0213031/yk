@@ -91,27 +91,17 @@ function checkAnswer(selectedIndex) {
 // 遊戲結束
 function endGame() {
   const correctRatio = score / questions.length;
-  let prize = "";
+  const percentage = (correctRatio * 100).toFixed(2); // 保留兩位小數
 
-  if (correctRatio === 1) {
-    prize = "Champion Prize! Congratulations!";
-  } else if (correctRatio >= 0.7) {
-    prize = "Medium Prize! Well done!";
-  } else if (correctRatio > 0.5) {
-    prize = "Small Prize! Good try!";
-  } else {
-    prize = "No prize! Try again next time!";
-  }
-
-  // Update question and show final result
+  // 更新問題內容和結果文字
   document.getElementById("question-text").textContent = "Game Over!";
   document.getElementById("options-list").innerHTML = "";
 
-  // Show result with enlarged font
+  // 顯示結果，放大字體
   const resultElement = document.getElementById("result-text");
-  resultElement.textContent = `You answered ${score} out of ${questions.length} questions correctly. Prize: ${prize}`;
-  resultElement.style.fontSize = "24px"; // enlarge font
-  resultElement.style.fontWeight = "bold"; // bold text
+  resultElement.textContent = `You answered ${score} out of ${questions.length} questions correctly (${percentage}%).`;
+  resultElement.style.fontSize = "24px"; // 放大字體
+  resultElement.style.fontWeight = "bold"; // 加粗
 }
 // 初始化遊戲
 displayQuestion();
