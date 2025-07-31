@@ -1,8 +1,8 @@
 const originalQuestions = [
     {
-        question: "About how many lost and found items did we collect this year?",
-        options: ["1000", "1500", "2000", "3000"],
-        correctAnswer: 2
+        question: "About how many lost and found items did we collect from Jan25-Jun25?",
+        options: ["5000", "10000", "15000", "20000"],
+        correctAnswer: 1
     },
     {
         question: "Which type of item will donate to Cross Road?",
