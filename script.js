@@ -1,7 +1,7 @@
 const originalQuestions = [
     {
-        question: "How many lost and found items did we collect this year?",
-        options: ["about 1000", "about 1500", "about 2000", "about 3000"],
+        question: "About how many lost and found items did we collect this year?",
+        options: ["1000", "1500", "2000", "3000"],
         correctAnswer: 2
     },
     {
@@ -15,8 +15,8 @@ const originalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "How many Airpods are there in the box?",
-        options: ["about 200", "about 300", "about 400", "about 500"],
+        question: "About how many Airpods are there in the box?",
+        options: ["200", "300", "400", "500"],
         correctAnswer: 2
     },
     {
@@ -25,13 +25,13 @@ const originalQuestions = [
         correctAnswer: 3
     },
     {
-        question: "How many clothing boxes donated to Crossroad?",
-        options: ["about 10 boxes", "about 20 boxes", "about 30 boxes", "about 40 boxes"],
+        question: "About how many clothing boxes donated to Crossroad in the last donation?",
+        options: ["10 boxes", "20 boxes", "30 boxes", "40 boxes"],
         correctAnswer: 2
     },
     {
-        question: "What is the contact number of Lost and Found team?",
-        options: ["27477777", "27477828", "27477838", "27472747"],
+        question: "About how many neckpillows are there in the box?",
+        options: ["30", "40", "50", "60"],
         correctAnswer: 2
     }
 ];
