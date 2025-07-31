@@ -1,100 +1,83 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    background-image: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    position: relative;
-}
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: -1;
+font-family: Arial, sans-serif;
+
+background-color: #f4f4f9;
+
+background-image: url('background.jpg'); /* 加入背景圖片 */
+
+background-size: cover; /* 讓背景圖片覆蓋整個畫面 */
+
+background-position: center; /* 讓背景圖片居中 */
+
+color: #333;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+height: 100vh;
+
+margin: 0;
 }
 
 #game-container {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 80%;
-    max-width: 600px;
-    border: 2px solid #4CAF50;
-    margin: 20px;
+
+background-color: rgba(255, 255, 255, 0.8); /* 讓遊戲容器背景半透明 */
+
+padding: 20px;
+
+border-radius: 10px;
+
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+width: 300px;
+
+text-align: center;
 }
 
-#question-text {
-    font-size: 1.4em;
-    line-height: 1.4;
-    margin: 20px 0;
-    color: #2d572c;
-    font-weight: 600;
+#question-container {
+
+margin-bottom: 20px;
 }
 
 #options-list {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0;
+
+list-style: none;
+
+padding: 0;
+}
+
+#options-list li {
+
+margin: 10px 0;
 }
 
 .option-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    margin: 10px 0;
+
+width: 100%;
+
+padding: 10px;
+
+background-color: #007bff;
+
+color: #fff;
+
+border: none;
+
+border-radius: 5px;
+
+cursor: pointer;
 }
 
 .option-btn:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+
+background-color: #0056b3;
 }
 
 #result-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #45a049;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    margin: 20px 0;
-}
-
-#progress {
-    color: #666;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-@media (max-width: 480px) {
-    #game-container {
-        width: 95%;
-        padding: 15px;
-    }
-    
-    .option-btn {
-        padding: 12px;
-        font-size: 14px;
-    }
-    
-    #question-text {
-        font-size: 1.2em;
-    }
+  font-size: 24px; /* 調整這裡的數值來放大字體 /
+  font-weight: bold; / 可以加粗 */
 }
