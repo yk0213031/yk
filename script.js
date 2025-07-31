@@ -38,8 +38,8 @@ const originalQuestions = [
 
 const additionalQuestions = [
     {
-        question: "What happens to unclaimed books?",
-        options: ["Recycled", "Donated to schools", "Stored forever", "Sold"],
+        question: "Which charity organization will we be partnering with for the charity sale? ?",
+        options: ["Redcross", "HK Children & Youth Services", "UNICEF", "WWF"],
         correctAnswer: 1
     },
     {
