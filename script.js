@@ -43,9 +43,9 @@ const additionalQuestions = [
         correctAnswer: 1
     },
     {
-        question: "Which partner handles electronics recycling?",
-        options: ["Greeners", "Caritas", "Redress", "WWF"],
-        correctAnswer: 1
+        question: "How will the cash be handled during the event?",
+        options: ["Donate to UNICEF", "Buy Charity Raffle", "Invest in Charity Foundation", "Disposed"],
+        correctAnswer: 0
     },
     {
         question: "Percentage of items donated instead of trashed?",
