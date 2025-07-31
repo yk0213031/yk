@@ -17,7 +17,7 @@ const originalQuestions = [
     {
         question: "About how many Airpods are there in the box?",
         options: ["200", "300", "400", "500"],
-        correctAnswer: 2
+        correctAnswer: 3
     },
     {
         question: "How lost and found team help with group sustainability?",
@@ -58,8 +58,8 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "Which items are NOT accepted?",
-        options: ["Perishable food", "Clothes", "Electronics", "Documents"],
+        question: "Which items will dispose after 24hrs?",
+        options: [" Fresh food", "Water bottle", "HKID/Passport", "Documents"],
         correctAnswer: 0
     },
     {
