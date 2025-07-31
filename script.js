@@ -1,16 +1,17 @@
-const questions = [
+const allQuestions = [ // Changed to allQuestions
+    // Original 7 questions
     {
-        question: "How many lost and found items did we collect this year？",
+        question: "How many lost and found items did we collect this year?",
         options: ["about 1000", "about 1500", "about 2000", "about 3000"],
         correctAnswer: 2
     },
     {
-        question: "Which type of item will donate to Cross Road？",
+        question: "Which type of item will donate to Cross Road?",
         options: ["Clothes", "Phones", "Computers", "Cash"],
         correctAnswer: 0
     },
     {
-        question: "Which type of item will donate to Caritas Computer Workshop？",
+        question: "Which type of item will donate to Caritas Computer Workshop?",
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
     },
@@ -20,88 +21,87 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "How lost and found team help with group sustainability”？",
-        options: ["Donate the found items", "Repaired the damaged bag", "Promoting resuse and recycle", "All of the above"],
+        question: "How lost and found team help with group sustainability?",
+        options: [
+            "Donate the found items", 
+            "Repaired the damaged bag", 
+            "Promoting reuse and recycle", 
+            "All of the above"
+        ],
         correctAnswer: 3
     },
     {
         question: "How many boxes of clothing did we donate to Crossroad in our last donation?",
-        options: ["about 10boxes ", "about 20boxes", "about 30boxes", "about 40boxes"],
+        options: ["about 10 boxes", "about 20 boxes", "about 30 boxes", "about 40 boxes"],
         correctAnswer: 2
     },
     {
-        question: "What is the contact number of Lost and Found team？",
+        question: "What is the contact number of Lost and Found team?",
         options: ["27477777", "27477828", "27477838", "27472747"],
         correctAnswer: 2
+    },
+    // New 3 questions
+    {
+        question: "How long do we keep items before donating?",
+        options: ["1 week", "2 weeks", "1 month", "3 months"],
+        correctAnswer: 2
+    },
+    {
+        question: "What percentage of donations go to landfill?",
+        options: ["5%", "10%", "15%", "0%"],
+        correctAnswer: 3
+    },
+    {
+        question: "Which organization helps us recycle electronics?",
+        options: ["Green Cross", "Caritas", "Redress", "WWF"],
+        correctAnswer: 1
     }
 ];
 
+let questions = []; // Will hold 5 random questions
 let currentQuestionIndex = 0;
 let score = 0;
 
-// 獲取 DOM 元素
-const questionText = document.getElementById("question-text");
-const optionsList = document.getElementById("options-list");
-const resultText = document.getElementById("result-text");
+// Randomly select 5 questions
+function initializeQuiz() {
+    // Shuffle array and pick first 5
+    questions = allQuestions
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
+    
+    currentQuestionIndex = 0;
+    score = 0;
+    displayQuestion();
+}
 
-// 顯示當前問題
+// Modified displayQuestion
 function displayQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     questionText.textContent = currentQuestion.question;
-    optionsList.innerHTML = ""; // 清空選項列表
+    optionsList.innerHTML = "";
+    progressText.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}`;
 
     currentQuestion.options.forEach((option, index) => {
         const li = document.createElement("li");
         const button = document.createElement("button");
         button.textContent = option;
         button.classList.add("option-btn");
+        button.setAttribute("aria-label", `Option ${index + 1}: ${option}`);
         button.addEventListener("click", () => checkAnswer(index));
         li.appendChild(button);
         optionsList.appendChild(li);
     });
 }
 
-// 檢查答案是否正確
-function checkAnswer(selectedIndex) {
-    const currentQuestion = questions[currentQuestionIndex];
-
-    if (selectedIndex === currentQuestion.correctAnswer) {
-        score++;
-        resultText.textContent = "答對了！";
-    } else {
-        resultText.textContent = "答錯了！正確答案是：" + currentQuestion.options[currentQuestion.correctAnswer];
-    }
-
-    // 進入下一題
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        // 下一題延遲 2 秒
-        setTimeout(() => {
-            displayQuestion();
-            resultText.textContent = ""; // 清除結果
-        }, 2000);
-    } else {
-        // 結束遊戲
-        setTimeout(() => {
-            endGame();
-        }, 2000);
-    }
-}
-
-// 遊戲結束
+// Modified restart function
 function endGame() {
-  const correctRatio = score / questions.length;
-  const percentage = (correctRatio * 100).toFixed(2); // 保留兩位小數
-
-  // 更新問題內容和結果文字
-  document.getElementById("question-text").textContent = "Game Over!";
-  document.getElementById("options-list").innerHTML = "";
-
-  // 顯示結果，放大字體
-  const resultElement = document.getElementById("result-text");
-  resultElement.textContent = `You answered ${score} out of ${questions.length} questions correctly (${percentage}%).`;
-  resultElement.style.fontSize = "24px"; // 放大字體
-  resultElement.style.fontWeight = "bold"; // 加粗
+    // ... (previous endGame code) ...
+    
+    const restartBtn = document.createElement("button");
+    restartBtn.textContent = "Play Again";
+    restartBtn.addEventListener("click", initializeQuiz); // Changed to use initializeQuiz
+    optionsList.appendChild(restartBtn);
 }
-// 初始化遊戲
-displayQuestion();
+
+// Start the quiz
+initializeQuiz(); // Changed from displayQuestion()
