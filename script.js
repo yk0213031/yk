@@ -48,7 +48,7 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "Percentage of items donated instead of trashed?",
+        question: "What is the amount of cash did we donate in the last donation?",
         options: ["50%", "75%", "85%", "95%"],
         correctAnswer: 2
     },
@@ -58,7 +58,7 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "Which items will dispose after 24hrs?",
+        question: "Which item will be disposed after 24hrs?",
         options: [" Fresh food", "Water bottle", "HKID/Passport", "Documents"],
         correctAnswer: 0
     },
