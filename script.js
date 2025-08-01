@@ -49,8 +49,8 @@ const additionalQuestions = [
     },
     {
         question: "What is the amount of cash did we donate in the last donation?",
-        options: ["50%", "75%", "85%", "95%"],
-        correctAnswer: 2
+        options: ["10000", "20000", "30000", "40000"],
+        correctAnswer: 1
     },
     {
         question: "How are fragile items handled?",
