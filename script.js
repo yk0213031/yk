@@ -68,13 +68,13 @@ const additionalQuestions = [
         correctAnswer: 3
     },
     {
-        question: "Annual CO2 reduction from donations?",
-        options: ["5 tons", "8 tons", "12 tons", "15 tons"],
+        question: "Which charity will handle our household product donation?",
+        options: ["Caritas Computer Workhshop", "Crossroad Foundation", "Salvation Army", "Caritas Second Hand Recycling Shop"],
         correctAnswer: 3
     },
     {
-        question: "Where to report lost items?",
-        options: ["Front desk", "Online form", "Email", "All above"],
+        question: "How many hosehold items did we donate to the charity in our last donation?",
+        options: ["5", "6", "7", "8"],
         correctAnswer: 3
     },
     {
