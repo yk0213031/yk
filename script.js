@@ -53,9 +53,9 @@ const additionalQuestions = [
         correctAnswer: 1
     },
     {
-        question: "How are fragile items handled?",
-        options: ["Special storage", "Immediate donation", "Discarded", "Auctioned"],
-        correctAnswer: 0
+        question: "What kind of chartity activity will HK Children and Youth Service partnering with us ?",
+        options: ["Flag days", "TV fundraising", "Charity sale", "Walk for Millions"],
+        correctAnswer: 2
     },
     {
         question: "Which item will be disposed if it is unclaimed for 24hrs?",
