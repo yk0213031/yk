@@ -63,9 +63,9 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "Storage time before donation?",
-        options: ["1 week", "2 weeks", "1 month", "3 months"],
-        correctAnswer: 2
+        question: "Clothing item Storage time before donation?",
+        options: ["10 days", "30 days", "60 days", "90 days"],
+        correctAnswer: 3
     },
     {
         question: "Annual CO2 reduction from donations?",
