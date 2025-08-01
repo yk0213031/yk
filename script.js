@@ -58,7 +58,7 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "Which item will be disposed after 24hrs?",
+        question: "Which item will be disposed if it is unclaimed for 24hrs?",
         options: [" Fresh food", "Water bottle", "HKID/Passport", "Documents"],
         correctAnswer: 0
     },
