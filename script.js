@@ -78,8 +78,8 @@ const additionalQuestions = [
         correctAnswer: 3
     },
     {
-        question: "Volunteer opportunities available?",
-        options: ["Weekly", "Monthly", "Seasonal", "All year"],
+        question: "Most unusual item ever found?",
+        options: ["Walking Sticks", "Musical Instrument", "Sim Card", "denture"],
         correctAnswer: 3
     },
     {
@@ -191,4 +191,5 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
