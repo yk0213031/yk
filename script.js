@@ -15,7 +15,7 @@ const originalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "About how many Airpods are there in the box?",
+        question: "About how many Airpods are there in our booth?",
         options: ["200", "300", "400", "500"],
         correctAnswer: 3
     },
@@ -30,7 +30,7 @@ const originalQuestions = [
         correctAnswer: 2
     },
     {
-        question: "About how many neckpillows are there in the box?",
+        question: "About how many neckpillows are there in our booth?",
         options: ["30", "40", "50", "60"],
         correctAnswer: 2
     }
@@ -191,3 +191,4 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
