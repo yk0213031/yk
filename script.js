@@ -83,9 +83,9 @@ const additionalQuestions = [
         correctAnswer: 3
     },
     {
-        question: "Which items get refurbished?",
-        options: ["Laptops", "Clothes", "Books", "All"],
-        correctAnswer: 0
+        question: "How many days does the Cathay Roadshow last?",
+        options: ["1", "2", "3", "4"],
+        correctAnswer: 1
     }
 ];
 
@@ -174,7 +174,7 @@ function checkAnswer(selectedIndex) {
 
 function endGame() {
     const percentage = ((score / questions.length) * 100).toFixed(2);
-    questionText.textContent = "遊戲結束！";
+    questionText.textContent = "Game End！";
     optionsList.innerHTML = "";
     progressText.textContent = "";
 
@@ -182,7 +182,7 @@ function endGame() {
     resultText.style.cssText = "font-size: 1.4rem; font-weight: bold;";
 
     const restartBtn = document.createElement("button");
-    restartBtn.textContent = "再玩一次";
+    restartBtn.textContent = "Play again";
     restartBtn.classList.add("option-btn");
     restartBtn.style.marginTop = "20px";
     restartBtn.addEventListener("click", initializeQuiz);
@@ -191,6 +191,7 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
 
 
