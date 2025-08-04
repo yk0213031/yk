@@ -79,7 +79,7 @@ const additionalQuestions = [
     },
     {
         question: "Most unusual item ever found?",
-        options: ["Walking Sticks", "Musical Instrument", "Sim Card", "denture"],
+        options: ["Walking Sticks", "Musical Instrument", "Sim Card", "Denture"],
         correctAnswer: 3
     },
     {
@@ -191,5 +191,6 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
 
