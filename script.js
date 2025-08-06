@@ -48,8 +48,8 @@ const additionalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "What is the amount of cash did we donate in the last donation?",
-        options: ["10000", "20000", "30000", "40000"],
+        question: "What is the weight of the electronic item box?",
+        options: ["50kg+", "80kg+", "100kg+", "120kg+"],
         correctAnswer: 1
     },
     {
@@ -191,6 +191,7 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
 
 
