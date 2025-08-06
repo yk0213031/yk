@@ -182,7 +182,7 @@ function endGame() {
     resultText.style.cssText = "font-size: 1.4rem; font-weight: bold;";
 
     const restartBtn = document.createElement("button");
-    restartBtn.textContent = "Play again";
+    restartBtn.textContent = "Play Again";
     restartBtn.classList.add("option-btn");
     restartBtn.style.marginTop = "20px";
     restartBtn.addEventListener("click", initializeQuiz);
@@ -191,6 +191,7 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
 
 
