@@ -174,6 +174,43 @@ function checkAnswer(selectedIndex) {
 
 function endGame() {
     const percentage = ((score / questions.length) * 100).toFixed(2);
+    
+    // Clear previous content
+    questionText.textContent = "";
+    optionsList.innerHTML = "";
+    progressText.textContent = "";
+
+    // Create day title
+    const dayTitle = document.createElement("h2");
+    dayTitle.textContent = "Day 2";
+    dayTitle.style.cssText = "color: #2d572c; font-size: 32px; margin-bottom: 20px;";
+
+    // Result text
+    resultText.textContent = `答對 ${score} 題，共 ${questions.length} 題 (${percentage}%)`;
+    resultText.style.cssText = "font-size: 24px; font-weight: bold; margin-bottom: 30px;";
+
+    // Create container for results
+    const resultContainer = document.getElementById("result-container");
+    resultContainer.innerHTML = "";
+    resultContainer.appendChild(dayTitle);
+    resultContainer.appendChild(resultText);
+
+    // Restart button
+    const restartBtn = document.createElement("button");
+    restartBtn.textContent = "再玩一次";
+    restartBtn.classList.add("option-btn");
+    restartBtn.style.marginTop = "20px";
+    restartBtn.addEventListener("click", () => {
+        document.body.style.backgroundColor = "";
+        initializeQuiz();
+    });
+    
+    resultContainer.appendChild(restartBtn);
+
+    // Change background color
+    document.body.style.backgroundColor = "#e6f7ff";
+}function endGame() {
+    const percentage = ((score / questions.length) * 100).toFixed(2);
     questionText.textContent = "Game End！";
     optionsList.innerHTML = "";
     progressText.textContent = "";
@@ -191,6 +228,7 @@ function endGame() {
 
 // Start the quiz
 initializeQuiz();
+
 
 
 
