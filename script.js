@@ -104,9 +104,6 @@ const progressText = document.getElementById("progress");
 
 // ===== UTILITY FUNCTIONS =====
 
-/**
- * Fisher-Yates shuffle algorithm for better randomization
- */
 function shuffleArray(array) {
     const shuffled = [...array]; 
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -116,9 +113,6 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-/**
- * Validates that required DOM elements exist
- */
 function validateDOMElements() {
     if (!questionText || !optionsList || !resultText || !progressText) {
         console.error("Missing required DOM elements.");
@@ -129,9 +123,6 @@ function validateDOMElements() {
 
 // ===== QUIZ FUNCTIONS =====
 
-/**
- * Initialize quiz with 4 random questions (1 original + 3 additional)
- */
 function initializeQuiz() {
     if (!validateDOMElements()) return;
 
@@ -140,16 +131,21 @@ function initializeQuiz() {
         Math.floor(Math.random() * originalQuestions.length)
     ];
 
-    // 2. Create pool excluding the selected original question
-    const pool = [...originalQuestions, ...additionalQuestions].filter(
-        (q) => q !== originalQ
-    );
+    // 2. Create pool from remaining questions (all additional + remaining original)
+    // We filter out the selected 'originalQ' to avoid duplicates
+    const remainingOriginals = originalQuestions.filter(q => q !== originalQ);
+    const pool = [...remainingOriginals, ...additionalQuestions];
 
-    // 3. Get 3 random questions from pool (CHANGED FROM 4 TO 3)
+    // 3. Get exactly 3 random questions from the pool
     const otherQs = shuffleArray(pool).slice(0, 3);
 
-    // 4. Combine and shuffle final 4 questions
+    // 4. Combine: 1 Original + 3 Others = 4 Questions Total
     questions = shuffleArray([originalQ, ...otherQs]);
+
+    // Double check length just to be safe in logic
+    if (questions.length > 4) {
+        questions = questions.slice(0, 4);
+    }
 
     // Reset state
     currentQuestionIndex = 0;
@@ -163,9 +159,6 @@ function initializeQuiz() {
     displayQuestion();
 }
 
-/**
- * Display current question and options
- */
 function displayQuestion() {
     if (currentQuestionIndex >= questions.length) {
         endGame();
@@ -175,11 +168,13 @@ function displayQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     questionText.textContent = currentQuestion.question;
     optionsList.innerHTML = "";
+    
+    // Update progress text
     progressText.textContent = `問題 ${currentQuestionIndex + 1}/${questions.length}`;
+    
     resultText.textContent = "";
     isAnswered = false;
 
-    // Create option buttons
     currentQuestion.options.forEach((option, index) => {
         const li = document.createElement("li");
         const button = document.createElement("button");
@@ -191,23 +186,18 @@ function displayQuestion() {
     });
 }
 
-/**
- * Check if answer is correct and provide feedback
- */
 function checkAnswer(selectedIndex, selectedButton) {
-    if (isAnswered) return; // Prevent multiple clicks
+    if (isAnswered) return;
     isAnswered = true;
 
     const currentQuestion = questions[currentQuestionIndex];
     const buttons = document.querySelectorAll(".option-btn");
 
-    // Disable all buttons
     buttons.forEach((btn) => btn.disabled = true);
 
     const correctButton = buttons[currentQuestion.correctAnswer];
     const isCorrect = selectedIndex === currentQuestion.correctAnswer;
 
-    // Visual feedback
     if (isCorrect) {
         score++;
         selectedButton.classList.add("correct");
@@ -220,7 +210,6 @@ function checkAnswer(selectedIndex, selectedButton) {
         resultText.style.color = "#e74c3c";
     }
 
-    // Move to next question after delay
     currentQuestionIndex++;
     setTimeout(() => {
         buttons.forEach((btn) => btn.classList.remove("correct", "incorrect"));
@@ -228,21 +217,15 @@ function checkAnswer(selectedIndex, selectedButton) {
     }, 1500); 
 }
 
-/**
- * Display final results with updated Title
- */
 function endGame() {
-    const percentage = ((score / questions.length) * 100).toFixed(0); // Removed decimals for cleaner look
+    const percentage = ((score / questions.length) * 100).toFixed(0);
 
-    // Clear previous content
     questionText.textContent = "";
     optionsList.innerHTML = "";
     progressText.textContent = "";
     resultText.textContent = "";
 
-    // Create results display
     const titleElement = document.createElement("h2");
-    // UPDATED TITLE HERE
     titleElement.textContent = "Lost & Found Sustainability Roadshow"; 
     titleElement.style.cssText =
         "color: #2d572c; font-size: 2.2rem; margin-bottom: 20px; font-weight: bold; line-height: 1.3;";
@@ -267,12 +250,10 @@ function endGame() {
         "margin-top: 30px; font-size: 1.2rem; padding: 12px 30px; cursor: pointer;";
     restartBtn.addEventListener("click", initializeQuiz);
 
-    // Append to options list
     optionsList.appendChild(titleElement);
     optionsList.appendChild(scoreDisplay);
     optionsList.appendChild(restartBtn);
 
-    // Change background color
     document.body.style.backgroundColor = "#e6f7ff";
 }
 
