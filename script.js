@@ -1,6 +1,11 @@
 // ===== QUIZ DATA =====
 const originalQuestions = [
     {
+        question: "About how many lost and found items did we collect from Jan25-Jun25?",
+        options: ["5000", "10000", "15000", "20000"],
+        correctAnswer: 1
+    },
+    {
         question: "Which type of item will donate to Cross Road?",
         options: ["Clothes", "Phones", "Computers", "Cash"],
         correctAnswer: 0
@@ -9,6 +14,11 @@ const originalQuestions = [
         question: "Which type of item will donate to Caritas Computer Workshop?",
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
+    },
+    {
+        question: "About how many Airpods are there in our booth?",
+        options: ["200", "300", "400", "500"],
+        correctAnswer: 3
     },
     {
         question: "How lost and found team help with group sustainability?",
@@ -31,6 +41,16 @@ const additionalQuestions = [
     {
         question: "Which charity organization will we be partnering with for the charity sale?",
         options: ["Redcross", "HK Children & Youth Services", "UNICEF", "WWF"],
+        correctAnswer: 1
+    },
+    {
+        question: "How will the cash be handled during the event?",
+        options: ["Donate to UNICEF", "Buy Charity Raffle", "Invest in Charity Foundation", "Disposed"],
+        correctAnswer: 0
+    },
+    {
+        question: "What is the weight of the electronic item box?",
+        options: ["50kg+", "80kg+", "100kg+", "120kg+"],
         correctAnswer: 1
     },
     {
@@ -63,6 +83,11 @@ const additionalQuestions = [
         options: ["Walking Sticks", "Musical Instrument", "Sim Card", "Denture"],
         correctAnswer: 3
     },
+    {
+        question: "How many days does the Cathay Roadshow last?",
+        options: ["1", "2", "3", "4"],
+        correctAnswer: 1
+    }
 ];
 
 // ===== QUIZ STATE =====
@@ -81,11 +106,9 @@ const progressText = document.getElementById("progress");
 
 /**
  * Fisher-Yates shuffle algorithm for better randomization
- * @param {Array} array - Array to shuffle
- * @returns {Array} - Shuffled array
  */
 function shuffleArray(array) {
-    const shuffled = [...array]; // Create a copy to avoid mutating original
+    const shuffled = [...array]; 
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -95,15 +118,10 @@ function shuffleArray(array) {
 
 /**
  * Validates that required DOM elements exist
- * @returns {boolean} - True if all elements exist
  */
 function validateDOMElements() {
     if (!questionText || !optionsList || !resultText || !progressText) {
-        console.error("Missing required DOM elements. Please ensure your HTML has:");
-        console.error("- <div id='question-text'></div>");
-        console.error("- <ul id='options-list'></ul>");
-        console.error("- <div id='result-text'></div>");
-        console.error("- <div id='progress'></div>");
+        console.error("Missing required DOM elements.");
         return false;
     }
     return true;
@@ -112,28 +130,25 @@ function validateDOMElements() {
 // ===== QUIZ FUNCTIONS =====
 
 /**
- * Initialize quiz with 4 random questions (2 original + 2 additional)
+ * Initialize quiz with 4 random questions (1 original + 3 additional)
  */
 function initializeQuiz() {
-    // Validate DOM elements
-    if (!validateDOMElements()) {
-        return;
-    }
+    if (!validateDOMElements()) return;
 
-    // Select 1 random original question
+    // 1. Select 1 random original question
     const originalQ = originalQuestions[
         Math.floor(Math.random() * originalQuestions.length)
     ];
 
-    // Create pool excluding the selected original question
+    // 2. Create pool excluding the selected original question
     const pool = [...originalQuestions, ...additionalQuestions].filter(
         (q) => q !== originalQ
     );
 
-    // Get 4 random questions from pool
-    const otherQs = shuffleArray(pool).slice(0, 4);
+    // 3. Get 3 random questions from pool (CHANGED FROM 4 TO 3)
+    const otherQs = shuffleArray(pool).slice(0, 3);
 
-    // Combine and shuffle final 4 questions
+    // 4. Combine and shuffle final 4 questions
     questions = shuffleArray([originalQ, ...otherQs]);
 
     // Reset state
@@ -178,24 +193,16 @@ function displayQuestion() {
 
 /**
  * Check if answer is correct and provide feedback
- * @param {number} selectedIndex - Index of selected option
- * @param {HTMLElement} selectedButton - The clicked button element
  */
 function checkAnswer(selectedIndex, selectedButton) {
-    // Prevent multiple submissions
-    if (isAnswered) {
-        return;
-    }
-
+    if (isAnswered) return; // Prevent multiple clicks
     isAnswered = true;
 
     const currentQuestion = questions[currentQuestionIndex];
     const buttons = document.querySelectorAll(".option-btn");
 
     // Disable all buttons
-    buttons.forEach((btn) => {
-        btn.disabled = true;
-    });
+    buttons.forEach((btn) => btn.disabled = true);
 
     const correctButton = buttons[currentQuestion.correctAnswer];
     const isCorrect = selectedIndex === currentQuestion.correctAnswer;
@@ -216,18 +223,16 @@ function checkAnswer(selectedIndex, selectedButton) {
     // Move to next question after delay
     currentQuestionIndex++;
     setTimeout(() => {
-        buttons.forEach((btn) => {
-            btn.classList.remove("correct", "incorrect");
-        });
+        buttons.forEach((btn) => btn.classList.remove("correct", "incorrect"));
         displayQuestion();
-    }, 1500); // Reduced from 2000ms for better UX
+    }, 1500); 
 }
 
 /**
- * Display final results and restart button
+ * Display final results with updated Title
  */
 function endGame() {
-    const percentage = ((score / questions.length) * 100).toFixed(2);
+    const percentage = ((score / questions.length) * 100).toFixed(0); // Removed decimals for cleaner look
 
     // Clear previous content
     questionText.textContent = "";
@@ -236,30 +241,34 @@ function endGame() {
     resultText.textContent = "";
 
     // Create results display
-    const dayTitle = document.createElement("h2");
-    dayTitle.textContent = "Result";
-    dayTitle.style.cssText =
-        "color: #2d572c; font-size: 2.5rem; margin-bottom: 20px; font-weight: bold;";
+    const titleElement = document.createElement("h2");
+    // UPDATED TITLE HERE
+    titleElement.textContent = "Lost & Found Sustainability Roadshow"; 
+    titleElement.style.cssText =
+        "color: #2d572c; font-size: 2.2rem; margin-bottom: 20px; font-weight: bold; line-height: 1.3;";
 
     const scoreDisplay = document.createElement("div");
     scoreDisplay.innerHTML = `
+        <p style="font-size: 1.5rem; margin: 15px 0; color: #555;">
+            Game Over!
+        </p>
         <p style="font-size: 1.8rem; margin: 15px 0; font-weight: bold;">
             答對 <span style="color: #27ae60;">${score}</span> 題，共 <span style="color: #2d572c;">${questions.length}</span> 題
         </p>
-        <p style="font-size: 2rem; margin: 15px 0; font-weight: bold; color: #3498db;">
+        <p style="font-size: 2.5rem; margin: 20px 0; font-weight: bold; color: #3498db;">
             ${percentage}%
         </p>
     `;
 
     const restartBtn = document.createElement("button");
-    restartBtn.textContent = "Play Again";
+    restartBtn.textContent = "再玩一次";
     restartBtn.classList.add("option-btn");
     restartBtn.style.cssText =
         "margin-top: 30px; font-size: 1.2rem; padding: 12px 30px; cursor: pointer;";
     restartBtn.addEventListener("click", initializeQuiz);
 
-    // Append to options list (or create container if needed)
-    optionsList.appendChild(dayTitle);
+    // Append to options list
+    optionsList.appendChild(titleElement);
     optionsList.appendChild(scoreDisplay);
     optionsList.appendChild(restartBtn);
 
@@ -269,4 +278,3 @@ function endGame() {
 
 // ===== START QUIZ =====
 initializeQuiz();
-
