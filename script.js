@@ -142,10 +142,14 @@ function initializeQuiz() {
     // 4. Combine: 1 Original + 3 Others = 4 Questions Total
     questions = shuffleArray([originalQ, ...otherQs]);
 
-    // Double check length just to be safe in logic
-    if (questions.length > 4) {
+    // Safety: Force to 4 if something goes wrong (should never happen)
+    if (questions.length !== 4) {
         questions = questions.slice(0, 4);
     }
+
+    // DEBUG: Log the total number of questions (check your console!)
+    console.log("Total questions generated: " + questions.length);
+    console.log("Questions:", questions); // Optional: Logs full questions for verification
 
     // Reset state
     currentQuestionIndex = 0;
