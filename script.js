@@ -1,3 +1,4 @@
+// ===== QUIZ DATA =====
 const originalQuestions = [
     {
         question: "About how many lost and found items did we collect from Jan25-Jun25?",
@@ -53,13 +54,13 @@ const additionalQuestions = [
         correctAnswer: 1
     },
     {
-        question: "What kind of chartity activity will HK Children and Youth Service partnering with us ?",
+        question: "What kind of chartity activity will HK Children and Youth Service partnering with us?",
         options: ["Flag days", "TV fundraising", "Charity sale", "Walk for Millions"],
         correctAnswer: 2
     },
     {
         question: "Which item will be disposed if it is unclaimed for 24hrs?",
-        options: [" Fresh food", "Water bottle", "HKID/Passport", "Documents"],
+        options: ["Fresh food", "Water bottle", "HKID/Passport", "Documents"],
         correctAnswer: 0
     },
     {
@@ -69,11 +70,11 @@ const additionalQuestions = [
     },
     {
         question: "Which charity will handle our household product donation?",
-        options: ["Caritas Computer Workhshop", "Crossroad Foundation", "Salvation Army", "Caritas Second Hand Recycling Shop"],
+        options: ["Caritas Computer Workshop", "Crossroad Foundation", "Salvation Army", "Caritas Second Hand Recycling Shop"],
         correctAnswer: 3
     },
     {
-        question: "How many hosehold items did we donate to the charity in our last donation?",
+        question: "How many household items did we donate to the charity in our last donation?",
         options: ["5", "6", "7", "8"],
         correctAnswer: 3
     },
@@ -89,149 +90,207 @@ const additionalQuestions = [
     }
 ];
 
+// ===== QUIZ STATE =====
 let questions = [];
 let currentQuestionIndex = 0;
 let score = 0;
+let isAnswered = false; // Prevent multiple submissions
 
+// ===== DOM ELEMENTS =====
 const questionText = document.getElementById("question-text");
 const optionsList = document.getElementById("options-list");
 const resultText = document.getElementById("result-text");
 const progressText = document.getElementById("progress");
 
+// ===== UTILITY FUNCTIONS =====
+
+/**
+ * Fisher-Yates shuffle algorithm for better randomization
+ * @param {Array} array - Array to shuffle
+ * @returns {Array} - Shuffled array
+ */
+function shuffleArray(array) {
+    const shuffled = [...array]; // Create a copy to avoid mutating original
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/**
+ * Validates that required DOM elements exist
+ * @returns {boolean} - True if all elements exist
+ */
+function validateDOMElements() {
+    if (!questionText || !optionsList || !resultText || !progressText) {
+        console.error("Missing required DOM elements. Please ensure your HTML has:");
+        console.error("- <div id='question-text'></div>");
+        console.error("- <ul id='options-list'></ul>");
+        console.error("- <div id='result-text'></div>");
+        console.error("- <div id='progress'></div>");
+        return false;
+    }
+    return true;
+}
+
+// ===== QUIZ FUNCTIONS =====
+
+/**
+ * Initialize quiz with 5 random questions (1 original + 4 additional)
+ */
 function initializeQuiz() {
-    // Ensure at least 1 original question
-    const originalQ = originalQuestions[Math.floor(Math.random() * originalQuestions.length)];
-    
-    // Get 4 other random questions (excluding selected original)
-    const pool = [...originalQuestions, ...additionalQuestions].filter(q => q !== originalQ);
+    // Validate DOM elements
+    if (!validateDOMElements()) {
+        return;
+    }
+
+    // Select 1 random original question
+    const originalQ = originalQuestions[
+        Math.floor(Math.random() * originalQuestions.length)
+    ];
+
+    // Create pool excluding the selected original question
+    const pool = [...originalQuestions, ...additionalQuestions].filter(
+        (q) => q !== originalQ
+    );
+
+    // Get 4 random questions from pool
     const otherQs = shuffleArray(pool).slice(0, 4);
-    
-    // Combine and shuffle final questions
+
+    // Combine and shuffle final 5 questions
     questions = shuffleArray([originalQ, ...otherQs]);
-    
+
+    // Reset state
     currentQuestionIndex = 0;
     score = 0;
+    isAnswered = false;
+
+    // Reset UI
+    document.body.style.backgroundColor = "";
+    resultText.textContent = "";
+
     displayQuestion();
 }
 
-function shuffleArray(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
-
+/**
+ * Display current question and options
+ */
 function displayQuestion() {
+    if (currentQuestionIndex >= questions.length) {
+        endGame();
+        return;
+    }
+
     const currentQuestion = questions[currentQuestionIndex];
     questionText.textContent = currentQuestion.question;
     optionsList.innerHTML = "";
     progressText.textContent = `問題 ${currentQuestionIndex + 1}/${questions.length}`;
+    resultText.textContent = "";
+    isAnswered = false;
 
+    // Create option buttons
     currentQuestion.options.forEach((option, index) => {
         const li = document.createElement("li");
         const button = document.createElement("button");
         button.textContent = option;
         button.classList.add("option-btn");
-        button.addEventListener("click", () => checkAnswer(index));
+        button.addEventListener("click", () => checkAnswer(index, button));
         li.appendChild(button);
         optionsList.appendChild(li);
     });
 }
 
-function checkAnswer(selectedIndex) {
+/**
+ * Check if answer is correct and provide feedback
+ * @param {number} selectedIndex - Index of selected option
+ * @param {HTMLElement} selectedButton - The clicked button element
+ */
+function checkAnswer(selectedIndex, selectedButton) {
+    // Prevent multiple submissions
+    if (isAnswered) {
+        return;
+    }
+
+    isAnswered = true;
+
     const currentQuestion = questions[currentQuestionIndex];
     const buttons = document.querySelectorAll(".option-btn");
-    
-    buttons.forEach(button => {
-        button.disabled = true;
-        button.style.transition = "background-color 0.3s";
+
+    // Disable all buttons
+    buttons.forEach((btn) => {
+        btn.disabled = true;
     });
 
-    const selectedButton = buttons[selectedIndex];
     const correctButton = buttons[currentQuestion.correctAnswer];
+    const isCorrect = selectedIndex === currentQuestion.correctAnswer;
 
-    if (selectedIndex === currentQuestion.correctAnswer) {
+    // Visual feedback
+    if (isCorrect) {
         score++;
         selectedButton.classList.add("correct");
-        resultText.textContent = "答對了！🎉";
+        resultText.textContent = "✓ 答對了！🎉";
+        resultText.style.color = "#27ae60";
     } else {
         selectedButton.classList.add("incorrect");
         correctButton.classList.add("correct");
-        resultText.textContent = `答錯了！正確答案是：${currentQuestion.options[currentQuestion.correctAnswer]}`;
+        resultText.textContent = `✗ 答錯了！正確答案是：${currentQuestion.options[currentQuestion.correctAnswer]}`;
+        resultText.style.color = "#e74c3c";
     }
 
+    // Move to next question after delay
     currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        setTimeout(() => {
-            buttons.forEach(button => {
-                button.classList.remove("correct", "incorrect");
-                button.disabled = false;
-            });
-            displayQuestion();
-            resultText.textContent = "";
-        }, 2000);
-    } else {
-        setTimeout(endGame, 2000);
-    }
+    setTimeout(() => {
+        buttons.forEach((btn) => {
+            btn.classList.remove("correct", "incorrect");
+        });
+        displayQuestion();
+    }, 1500); // Reduced from 2000ms for better UX
 }
 
+/**
+ * Display final results and restart button
+ */
 function endGame() {
     const percentage = ((score / questions.length) * 100).toFixed(2);
-    
+
     // Clear previous content
     questionText.textContent = "";
     optionsList.innerHTML = "";
     progressText.textContent = "";
+    resultText.textContent = "";
 
-    // Create day title
+    // Create results display
     const dayTitle = document.createElement("h2");
-    dayTitle.textContent = "Day 2";
-    dayTitle.style.cssText = "color: #2d572c; font-size: 32px; margin-bottom: 20px;";
+    dayTitle.textContent = "Day 2 - 成績";
+    dayTitle.style.cssText =
+        "color: #2d572c; font-size: 2.5rem; margin-bottom: 20px; font-weight: bold;";
 
-    // Result text
-    resultText.textContent = `答對 ${score} 題，共 ${questions.length} 題 (${percentage}%)`;
-    resultText.style.cssText = "font-size: 24px; font-weight: bold; margin-bottom: 30px;";
+    const scoreDisplay = document.createElement("div");
+    scoreDisplay.innerHTML = `
+        <p style="font-size: 1.8rem; margin: 15px 0; font-weight: bold;">
+            答對 <span style="color: #27ae60;">${score}</span> 題，共 <span style="color: #2d572c;">${questions.length}</span> 題
+        </p>
+        <p style="font-size: 2rem; margin: 15px 0; font-weight: bold; color: #3498db;">
+            ${percentage}%
+        </p>
+    `;
 
-    // Create container for results
-    const resultContainer = document.getElementById("result-container");
-    resultContainer.innerHTML = "";
-    resultContainer.appendChild(dayTitle);
-    resultContainer.appendChild(resultText);
-
-    // Restart button
     const restartBtn = document.createElement("button");
     restartBtn.textContent = "再玩一次";
     restartBtn.classList.add("option-btn");
-    restartBtn.style.marginTop = "20px";
-    restartBtn.addEventListener("click", () => {
-        document.body.style.backgroundColor = "";
-        initializeQuiz();
-    });
-    
-    resultContainer.appendChild(restartBtn);
+    restartBtn.style.cssText =
+        "margin-top: 30px; font-size: 1.2rem; padding: 12px 30px; cursor: pointer;";
+    restartBtn.addEventListener("click", initializeQuiz);
+
+    // Append to options list (or create container if needed)
+    optionsList.appendChild(dayTitle);
+    optionsList.appendChild(scoreDisplay);
+    optionsList.appendChild(restartBtn);
 
     // Change background color
     document.body.style.backgroundColor = "#e6f7ff";
-}function endGame() {
-    const percentage = ((score / questions.length) * 100).toFixed(2);
-    questionText.textContent = "Game End！";
-    optionsList.innerHTML = "";
-    progressText.textContent = "";
-
-    resultText.textContent = `答對 ${score} 題，共 ${questions.length} 題 (${percentage}%)`;
-    resultText.style.cssText = "font-size: 1.4rem; font-weight: bold;";
-
-    const restartBtn = document.createElement("button");
-    restartBtn.textContent = "Play Again";
-    restartBtn.classList.add("option-btn");
-    restartBtn.style.marginTop = "20px";
-    restartBtn.addEventListener("click", initializeQuiz);
-    optionsList.appendChild(restartBtn);
 }
 
-// Start the quiz
+// ===== START QUIZ =====
 initializeQuiz();
-
-
-
-
-
-
-
