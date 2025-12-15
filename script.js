@@ -1,11 +1,6 @@
 // ===== QUIZ DATA =====
 const originalQuestions = [
     {
-        question: "About how many lost and found items did we collect from Jan25-Jun25?",
-        options: ["5000", "10000", "15000", "20000"],
-        correctAnswer: 1
-    },
-    {
         question: "Which type of item will donate to Cross Road?",
         options: ["Clothes", "Phones", "Computers", "Cash"],
         correctAnswer: 0
@@ -14,11 +9,6 @@ const originalQuestions = [
         question: "Which type of item will donate to Caritas Computer Workshop?",
         options: ["Electronic items", "Clothes", "Water Flasks", "Food items"],
         correctAnswer: 0
-    },
-    {
-        question: "About how many Airpods are there in our booth?",
-        options: ["200", "300", "400", "500"],
-        correctAnswer: 3
     },
     {
         question: "How lost and found team help with group sustainability?",
@@ -41,16 +31,6 @@ const additionalQuestions = [
     {
         question: "Which charity organization will we be partnering with for the charity sale?",
         options: ["Redcross", "HK Children & Youth Services", "UNICEF", "WWF"],
-        correctAnswer: 1
-    },
-    {
-        question: "How will the cash be handled during the event?",
-        options: ["Donate to UNICEF", "Buy Charity Raffle", "Invest in Charity Foundation", "Disposed"],
-        correctAnswer: 0
-    },
-    {
-        question: "What is the weight of the electronic item box?",
-        options: ["50kg+", "80kg+", "100kg+", "120kg+"],
         correctAnswer: 1
     },
     {
@@ -83,11 +63,6 @@ const additionalQuestions = [
         options: ["Walking Sticks", "Musical Instrument", "Sim Card", "Denture"],
         correctAnswer: 3
     },
-    {
-        question: "How many days does the Cathay Roadshow last?",
-        options: ["1", "2", "3", "4"],
-        correctAnswer: 1
-    }
 ];
 
 // ===== QUIZ STATE =====
@@ -137,7 +112,7 @@ function validateDOMElements() {
 // ===== QUIZ FUNCTIONS =====
 
 /**
- * Initialize quiz with 5 random questions (1 original + 4 additional)
+ * Initialize quiz with 4 random questions (2 original + 2 additional)
  */
 function initializeQuiz() {
     // Validate DOM elements
@@ -158,7 +133,7 @@ function initializeQuiz() {
     // Get 4 random questions from pool
     const otherQs = shuffleArray(pool).slice(0, 4);
 
-    // Combine and shuffle final 5 questions
+    // Combine and shuffle final 4 questions
     questions = shuffleArray([originalQ, ...otherQs]);
 
     // Reset state
@@ -262,7 +237,7 @@ function endGame() {
 
     // Create results display
     const dayTitle = document.createElement("h2");
-    dayTitle.textContent = "Day 2 - 成績";
+    dayTitle.textContent = "Result";
     dayTitle.style.cssText =
         "color: #2d572c; font-size: 2.5rem; margin-bottom: 20px; font-weight: bold;";
 
@@ -277,7 +252,7 @@ function endGame() {
     `;
 
     const restartBtn = document.createElement("button");
-    restartBtn.textContent = "再玩一次";
+    restartBtn.textContent = "Play Again";
     restartBtn.classList.add("option-btn");
     restartBtn.style.cssText =
         "margin-top: 30px; font-size: 1.2rem; padding: 12px 30px; cursor: pointer;";
@@ -294,3 +269,4 @@ function endGame() {
 
 // ===== START QUIZ =====
 initializeQuiz();
+
