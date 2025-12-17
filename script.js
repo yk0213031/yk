@@ -16,11 +16,6 @@ const originalQuestions = [
         correctAnswer: 0
     },
     {
-        question: "About how many Airpods are there in our booth?",
-        options: ["200", "300", "400", "500"],
-        correctAnswer: 3
-    },
-    {
         question: "How lost and found team help with group sustainability?",
         options: ["Donate found items", "Repair bags", "Promote reuse", "All"],
         correctAnswer: 3
@@ -30,27 +25,12 @@ const originalQuestions = [
         options: ["10 boxes", "20 boxes", "30 boxes", "40 boxes"],
         correctAnswer: 2
     },
-    {
-        question: "About how many neckpillows are there in our booth?",
-        options: ["30", "40", "50", "60"],
-        correctAnswer: 2
-    }
 ];
 
 const additionalQuestions = [
     {
         question: "Which charity organization will we be partnering with for the charity sale?",
         options: ["Redcross", "HK Children & Youth Services", "UNICEF", "WWF"],
-        correctAnswer: 1
-    },
-    {
-        question: "How will the cash be handled during the event?",
-        options: ["Donate to UNICEF", "Buy Charity Raffle", "Invest in Charity Foundation", "Disposed"],
-        correctAnswer: 0
-    },
-    {
-        question: "What is the weight of the electronic item box?",
-        options: ["50kg+", "80kg+", "100kg+", "120kg+"],
         correctAnswer: 1
     },
     {
@@ -83,11 +63,6 @@ const additionalQuestions = [
         options: ["Walking Sticks", "Musical Instrument", "Sim Card", "Denture"],
         correctAnswer: 3
     },
-    {
-        question: "How many days does the Cathay Roadshow last?",
-        options: ["1", "2", "3", "4"],
-        correctAnswer: 1
-    }
 ];
 
 // ===== QUIZ STATE =====
@@ -263,3 +238,4 @@ function endGame() {
 
 // ===== START QUIZ =====
 initializeQuiz();
+
